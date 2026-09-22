@@ -130,8 +130,11 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.log(`[subscribe] RESEND_API_KEY not set — logging submission: ${email} (${type})`);
-    return NextResponse.json({ ok: true });
+    console.error("[subscribe] RESEND_API_KEY is not set.");
+    return NextResponse.json(
+      { error: "Email service is not configured (missing RESEND_API_KEY)." },
+      { status: 500 }
+    );
   }
 
   const resend = new Resend(apiKey);
@@ -152,11 +155,18 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error("[subscribe] Failed to send welcome email:", error);
-      return NextResponse.json({ error: "Failed to send email." }, { status: 502 });
+      return NextResponse.json(
+        { error: `Failed to send email: ${error.message}` },
+        { status: 502 }
+      );
     }
   } catch (error) {
     console.error("[subscribe] Unexpected error:", error);
-    return NextResponse.json({ error: "Failed to process subscription." }, { status: 502 });
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json(
+      { error: `Failed to process subscription: ${message}` },
+      { status: 502 }
+    );
   }
 
   return NextResponse.json({ ok: true });
