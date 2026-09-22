@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { siteConfig } from "@/lib/site-config";
 
-const FROM_ADDRESS = "Jeremy Johnson <hello@rootedym.com>";
+const FROM_ADDRESS = "ROOTED <hello@rootedym.com>";
 const SAMPLE_PDF_URL = new URL("/rooted-sample-lesson.pdf", siteConfig.url).toString();
 const RESOURCES_URL = new URL("/resources", siteConfig.url).toString();
 const REVIEW_URL = "https://rootedym.com/review";
