@@ -77,10 +77,10 @@ export default function Home() {
 
           <div className="mx-auto w-full max-w-sm md:max-w-none">
             <Image
-              src="/book-cover.jpg"
+              src="/Rooted_bookcover.jpg"
               alt="ROOTED: A 52-Week Lesson Plan for Christian Youth Ministry — book cover"
               width={600}
-              height={900}
+              height={957}
               sizes="(min-width: 768px) 480px, 384px"
               preload
               className="h-auto w-full rounded-xl border border-white/10 shadow-2xl shadow-black/80 contrast-115 brightness-90"
